@@ -1,0 +1,391 @@
+{
+
+    //PHP
+
+    "for-PHP": {
+        "prefix": "for",
+        "body": [
+            "for($$i = 0; $$i < $1; $$i++){",
+                "\t$0",
+            "}"
+        ],
+    },
+
+    "foreach-PHP": {
+        "prefix": "foreach",
+        "body": [
+            "foreach($1 as $2){",
+                "\t$0",
+            "}"
+        ],
+    },
+
+    "try-catch-PHP": {
+        "prefix": "try",
+        "body": [
+            "try{",
+                "\t$1",
+            "}catch( PDOException $$e){",
+                "\t$0",
+            "}"
+        ],
+    },
+
+    "conexion-PDO-PHP": {
+        "prefix": "pdo-conexion",
+        "body": [
+            "$$conexion = new PDO('mysql:host=$1;dbname=$2;charset=utf8;','$3','$4');$0",
+        ],
+    },
+
+    "query-PDO-PHP": {
+        "prefix": "pdo-query",
+        "body": [
+            "$$query = \"SELECT * FROM $1\";",
+            "$$sentencia = $$conexion->query($$query);",
+            "$$resultado = $$sentencia->fetchAll();$0"
+        ],
+    },
+
+    "prepare-PDO-PHP": {
+        "prefix": "pdo-prepare",
+        "body": [
+            "$$query = \"SELECT * FROM $tabla WHERE $nombre = :$nombre\";",
+            "$$sentencia = $$conexion->prepare($$query);",
+            "$$sentencia->bindParam(':$nombre', $$nombre);",
+            "$$sentencia->execute();",
+            "$$filas = $$sentencia->rowCount();"
+        ],
+    },
+
+    "PHP": {
+        "prefix": "php",
+        "body": [
+            "<?php",
+            "",
+            "$0",
+            "",
+            "?>"
+        ],
+    },
+
+    "PHP-HTML": {
+        "prefix": "!php",
+        "body": [
+            "<?= $0 ?>"
+        ],
+    },
+
+    "Funcion generar cadena PHP": {
+        "prefix": "funcion-generar-cadena-PHP",
+        "body": [
+            "function generar_cadena($$longitud, $$especiales){",
+                "\t$$cadena = \"\";",
+                "\t$$semilla = array();",
+                "\t$$semilla[] = array('a', 'e', 'i', 'o', 'u');",
+                "\t$$semilla[] = array('A', 'E', 'I', 'O', 'U');",
+                "\t$$semilla[] = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w'. 'x', 'y', 'z');",
+                "\t$$semilla[] = array('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'T', 'V', 'W'. 'X', 'Y', 'Z');",
+                "\t$$semilla[] = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');",
+                "\tif($$especiales){",
+                    "\t\t$$semilla[] = array('$', '#', '%', '&', '@', '-', '?', '¿', '!', '¡', '+', '*');",
+                "\t}",
+                "\tfor($$i = 0; $$i < $$longitud; $$i++){",
+                    "\t\t$$valor = mt_rand(0, count($$semilla)-1);",
+                    "\t\t$$posicion = mt_rand(0, count($$semilla[$$valor])-1);",
+                    "\t\t$$cadena .= $$semilla[$$valor][$$posicion];",
+                "\t}",
+               "\treturn $$cadena;",
+            "}"
+        ],
+    },
+
+    "Funcion comprobar pass y hacer hash PHP": {
+        "prefix": "funcion-comprobar-pass-PHP",
+        "body": [
+            "function comprobar_pass($$pass){",
+                "\t$$mayusculas=0;",
+                "\t$$caracter_especial=0;",
+                "\t$$numeros=0;",
+                "\tif(strlen($$pass) <=7){",
+                    "\t\treturn false;//LA CONTRASEÑA DEBE DE CONTENER 8 O MAS DIGITOS",
+                "\t}else{",
+                    "\t\tfor($$i=0;$$i<strlen($$pass);$$i++){",
+                        "\t\t\tif(ctype_upper($$pass[$$i])){//COMPRUEBO MAYUSCULAS",
+                            "\t\t\t\t$$mayusculas++;",
+                        "\t\t\t}",
+                        "\t\t\tif(!ctype_alpha($$pass[$$i]) AND !is_numeric($$pass[$$i])){//COMPRUEBO CARACTER ESPECIAL",
+                           "\t\t\t\t$$caracter_especial++;",
+                        "\t\t\t}",
+                        "\t\t\tif(is_numeric($$pass[$$i])){//COMPRUEBO NUMEROS",
+                            "\t\t\t\t$$numeros++;",
+                        "\t\t\t}",
+                    "\t\t}",
+                    "\t\tif($$mayusculas >=1 and $$caracter_especial >=1 and $$numeros >=1){",
+                        "\t\t\t$$pass = hash(\"sha512\", $$pass);//LE HAGO EL HASH A LA CONTRASEÑA (SHA-512)",
+                        "\t\t\treturn $$pass;",
+                    "\t\t}else{",
+                        "\t\t\treturn false;//LA CONTRASEÑA DEBE CONTENER AL MENOS UNA MAYUSCULAS, UN CARACTER ESPECIAL, Y UN NÚMERO",
+                    "\t\t}",
+                "\t}",
+            "}"
+        ],
+    },
+
+    "Funcion paginacion PHP": {
+        "prefix": "funcion-paginacion-PHP",
+        "body": [
+            "try{",
+                "\tif(isset($$_POST['pagina'])){",
+                    "\t\t$$pagina = $$_POST['pagina'];",
+                    "\t\t$$_SESSION['pagina'] = $$pagina;",
+                "\t}else{",
+                    "\t\tif(isset($$_SESSION['pagina'])){",
+                        "\t\t\t$$pagina = $$_SESSION['pagina'];",
+                    "\t\t}else{",
+                        "\t\t\t$$pagina = 10;",
+                    "\t\t}",
+                "\t}",
+                "",
+                "\tif(isset($$_GET['inicio'])){",
+                    "\t\t$$inicio = $$_GET['inicio'];",
+                    "\t\tif($$inicio > 1){",
+                        "\t\t\t$$inicio = $$inicio * $$pagina - $$pagina;",
+                    "\t\t}else{",
+                        "\t\t\t$$inicio = 0;",
+                    "\t\t}",
+                "",
+                "\t}else{",
+                    "\t\t$$inicio = 0;",
+                "\t}",
+                "",
+                "\tif(isset($$_GET['orden'])){",
+                    "\t\t$$orden = $$_GET['orden'];",
+                "\t}else{",
+                    "\t\t$$orden = \"id\";",
+                "\t}",
+                "",
+                "\tif(isset($$_GET['tipo_orden'])){",
+                    "\t\t$$tipo_orden = $$_GET['tipo_orden'];",
+                "\t}else{",
+                    "\t\t$$tipo_orden = \"ASC\";",
+                "\t}",
+                "",
+                "\t$$query = \"SELECT SQL_CALC_FOUND_ROWS productos.id, productos.producto, proveedores.empresa, categorias.categoria FROM productos INNER JOIN proveedores ON productos.proveedor_id = proveedores.id INNER JOIN categorias ON productos.categoria_id = categorias.id ORDER BY $$orden $$tipo_orden LIMIT $$inicio, $$pagina\";",
+                "\t$$sentencia = $$conexion->prepare($$query);",
+                "\t$$sentencia->execute();",
+                "\t$$resultado = $$sentencia->fetchAll();",
+                "\t$$total = $$conexion->query(\"SELECT FOUND_ROWS() AS total\");",
+                "\t$$total = $$total->fetch();",
+                "\t$$total = $$total['total'] / $$pagina;",
+            "}catch(PDOException $$e){",
+                "\techo \"ERROR: \".$$e->getMessage();",
+                "\tdie();",
+            "}"
+        ],
+    },
+
+
+
+    //HTML
+
+    "Estructura HTML5": {
+        "prefix": "html",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"es\">",
+            "<head>",
+                "\t<meta charset=\"UTF-8\" />",
+                "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+                "\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />",
+                "\t<!-- <link rel=\"stylesheet\" href=\"bower_components/bootstrap/dist/css/bootstrap.min.css\"> -->",
+                "\t<!-- <link rel=\"stylesheet\" href=\"bower_components/fontawesome/css/font-awesome.min.css\"> -->",
+                "\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">",
+                "\t<link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.4.1/css/all.css\" integrity=\"sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz\" crossorigin=\"anonymous\">",
+                "\t<link rel=\"stylesheet\" href=\"estilos/estilo.css\" />",
+                "\t<title><?= (isset($$titulo_pagina)) ? $$titulo_pagina : \"Definir: \\\\$$titulo_pagina\"; ?></title>",
+            "</head>",
+            "<body>",
+                "\t<script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>",
+                "\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script>",
+                "\t<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>",
+                "\t<script src=\"https://unpkg.com/sweetalert/dist/sweetalert.min.js\"></script>",
+                "",
+                "\t$0",
+                "",
+            "</body>",
+            "</html>"
+        ],
+    },
+
+    "navbar": {
+        "prefix": "navbar",
+        "body": [
+            "<nav class=\"navbar navbar-expand-lg navbar-light bg-dark navbar-manga fixed-top\">",
+                "\t<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 2rem;\"><?= (isset($$nombre_empresa)) ? $$nombre_empresa : \"Definir: \\\\$$nombre_empresa\"; ?></a>",
+                "\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">",
+                    "\t\t<span class=\"navbar-toggler-icon\"></span>",
+                "\t</button>",
+                "\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">",
+                    "\t\t<ul class=\"navbar-nav mr-auto\">",
+                        "\t\t\t<li class=\"nav-item <?= (isset($$fichero) && $$fichero == \"index.php\") ? \"active\" : \"\"; ?>\">",
+                            "\t\t\t\t<a class=\"nav-link\" href=\"index.php\">Inicio <span class=\"sr-only\">(current)</span></a>",
+                        "\t\t\t</li>",
+                        "\t\t\t<!-- <li class=\"nav-item dropdown\">",
+                            "\t\t\t\t<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">",
+                            "\t\t\t\tDesplegable",
+                            "\t\t\t\t</a>",
+                            "\t\t\t\t<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">",
+                                "\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\">Action</a>",
+                                "\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\">Another action</a>",
+                                "\t\t\t\t\t<div class=\"dropdown-divider\"></div>",
+                                "\t\t\t\t\t<a class=\"dropdown-item\" href=\"#\">Something else here</a>",
+                            "\t\t\t\t</div>",
+                        "\t\t\t</li> -->",
+                    "\t\t</ul>",
+                    "\t\t<ul class=\"navbar-nav ml-auto\">",
+                        "\t\t\t<form class=\"form-inline my-2 my-lg-0 mr-5\">",
+                            "\t\t\t\t<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Buscar\" aria-label=\"Search\">",
+                            "\t\t\t\t<button class=\"btn btn-outline-manga my-2 my-sm-0\" type=\"submit\">Buscar</button>",
+                        "\t\t\t</form>",
+                        "\t\t\t<li class=\"nav-item logout-manga\">",
+                            "\t\t\t\t<a class=\"nav-link\" href=\"logout.php\">Cerrar sesión</span></a>",
+                        "\t\t\t</li>",
+                    "\t\t</ul>",
+                "\t</div>",
+            "</nav>"
+        ],
+    },
+
+    //JAVASCRIPT
+
+    "script": {
+        "prefix": "script",
+        "body": [
+            "<script lang=\"text/javascript\">",
+                "\t$0",
+            "</script>"
+        ],
+    },
+
+    "for-JavaScript": {
+        "prefix": "for",
+        "body": [
+            "for(var i = 0; i < $1; i++){",
+                "\t$0",
+            "}"
+        ],
+    },
+
+    "for2-JavaScript": {
+        "prefix": "for",
+        "body": [
+            "for(var i in $1){",
+                "\t$0",
+            "}"
+        ],
+    },
+
+    "Funcion validar JavaScript": {
+        "prefix": "funcion-validar-JS",
+        "body": [
+            "function validar(){",
+                "\tvar nombre = document.forms[\"registro\"][\"nombre\"].value;",
+                "\tvar email = document.forms[\"registro\"][\"email\"].value;",
+                "\tvar pass = document.forms[\"registro\"][\"pass\"].value;",
+                "\tvar pass2 = document.forms[\"registro\"][\"pass2\"].value;",
+                "\tif(nombre.length != 0){",
+                    "\t\tif(email.length != 0){",
+                        "\t\t\tif (/^[-\\w.%+]{1,64}@(?:[a-z0-9-]{1,63}\\.){1,125}[a-z]{2,63}$/.test(email)){",
+                            "\t\t\t\tif(pass.length != 0){",
+                                "\t\t\t\t\tif(pass2.length != 0){",
+                                    "\t\t\t\t\t\tif(pass == pass2){",
+                                        "\t\t\t\t\t\t\treturn true;",
+                                    "\t\t\t\t\t\t}else{",
+                                        "\t\t\t\t\t\t\talert(\"Las contraseñas no son iguales\");",
+                                        "\t\t\t\t\t\t\treturn false;",
+                                    "\t\t\t\t\t\t}",
+                                "\t\t\t\t\t}else{",
+                                    "\t\t\t\t\t\talert(\"Repita la contraseña\");",
+                                    "\t\t\t\t\t\treturn false;",
+                                "\t\t\t\t\t}",
+                            "\t\t\t\t}else{",
+                                "\t\t\t\t\talert(\"La contraseña no debe de estar vacia\");",
+                                "\t\t\t\t\treturn false;",
+                            "\t\t\t\t}",
+                        "\t\t\t}else{",
+                            "\t\t\t\talert(\"El email no es correcto\");",
+                            "\t\t\t\treturn false;",
+                        "\t\t\t}",
+                    "\t\t}else{",
+                        "\t\t\talert(\"El email no debe de estar vacio\");",
+                        "\t\t\treturn false;",
+                    "\t\t}",
+                "\t}else{",
+                    "\t\talert(\"El nombre no debe de estar vacio\");",
+                    "\t\treturn false;",
+                "\t}",
+            "}"
+        ],
+    },
+
+    //CSS
+
+    "navbar-manga": {
+        "prefix": "navbar-manga",
+        "body": [
+            ".navbar-manga{",
+                "\tpadding: 0;",
+                "\tpadding-right: 0.8rem;",
+                "\tpadding-left: 0.8rem;",
+            "}",
+            "",
+            ".navbar-manga .nav-item{",
+                "\tpadding: 0.5rem;",
+            "}",
+            "",
+            ".navbar-manga .nav-item.active{",
+                "\tbackground-color: #455B69;",
+            "}",
+            "",
+            ".navbar-manga .nav-item:hover{",
+                "\tbackground-color: #455B69;",
+            "}",
+            "",
+            ".navbar-manga .nav-item.logout-manga:hover{",
+                "\tbackground-color: #910000;",
+            "}",
+            "",
+            ".navbar-manga .dropdown-menu{",
+               "\tbackground-color: #455B69;",
+            "}",
+            "",
+            ".navbar-manga .dropdown-menu .dropdown-divider{",
+                "\tborder-top: 1px solid #343A40;",
+            "}",
+            "",
+            ".navbar-manga .dropdown-menu .dropdown-item:hover{",
+                "\tbackground-color: rgb(45, 72, 88);",
+            "}",
+            "",
+            ".navbar-manga a{",
+                "\tcolor: white !important;",
+            "}",
+            "",
+           ".btn-outline-manga {",
+                "\tcolor: rgb(255, 255, 255);",
+                "\tbackground-color: transparent;",
+                "\tbackground-image: none;",
+                "\tborder-color: rgb(255, 255, 255);",
+            "}",
+            "",
+            ".btn-outline-manga:hover {",
+            "\tcolor: #fff;",
+            "\tbackground-color: #455B69;",
+            "\tborder-color: #455B69;",
+            "}"
+        ],
+    },
+}
+
+
