@@ -5,7 +5,7 @@
     "for-PHP": {
         "prefix": "for",
         "body": [
-            "for($$i = 0; $$i < $1; $$i++){",
+            "for(\\$i = 0; \\$i < $1; \\$i++){",
                 "\t$0",
             "}"
         ],
@@ -25,7 +25,7 @@
         "body": [
             "try{",
                 "\t$1",
-            "}catch( PDOException $$e){",
+            "}catch( PDOException \\$e){",
                 "\t$0",
             "}"
         ],
@@ -34,27 +34,27 @@
     "conexion-PDO-PHP": {
         "prefix": "pdo-conexion",
         "body": [
-            "$$conexion = new PDO('mysql:host=$1;dbname=$2;charset=utf8;','$3','$4');$0",
+            "\\$conexion = new PDO('mysql:host=${1:Servidor};dbname=${2:BaseDatos};charset=utf8;','${3:Usuario}','${4:Contraseña}');$0",
         ],
     },
 
     "query-PDO-PHP": {
         "prefix": "pdo-query",
         "body": [
-            "$$query = \"SELECT * FROM $1\";",
-            "$$sentencia = $$conexion->query($$query);",
-            "$$resultado = $$sentencia->fetchAll();$0"
+            "\\$query = \"SELECT * FROM $1\";",
+            "\\$sentencia = \\$conexion->query(\\$query);",
+            "\\$resultado = \\$sentencia->fetchAll();$0"
         ],
     },
 
     "prepare-PDO-PHP": {
         "prefix": "pdo-prepare",
         "body": [
-            "$$query = \"SELECT * FROM $tabla WHERE $nombre = :$nombre\";",
-            "$$sentencia = $$conexion->prepare($$query);",
-            "$$sentencia->bindParam(':$nombre', $$nombre);",
-            "$$sentencia->execute();",
-            "$$filas = $$sentencia->rowCount();"
+            "\\$query = \"SELECT * FROM $tabla WHERE $nombre = :$nombre\";",
+            "\\$sentencia = \\$conexion->prepare(\\$query);",
+            "\\$sentencia->bindParam(':$nombre', \\$nombre);",
+            "\\$sentencia->execute();",
+            "\\$filas = \\$sentencia->rowCount();$1"
         ],
     },
 
@@ -62,9 +62,7 @@
         "prefix": "php",
         "body": [
             "<?php",
-            "",
             "$0",
-            "",
             "?>"
         ],
     },
@@ -80,20 +78,20 @@
         "prefix": "funcion-generar-cadena-PHP",
         "body": [
             "function generar_cadena($$longitud, $$especiales){",
-                "\t$$cadena = \"\";",
-                "\t$$semilla = array();",
-                "\t$$semilla[] = array('a', 'e', 'i', 'o', 'u');",
-                "\t$$semilla[] = array('A', 'E', 'I', 'O', 'U');",
-                "\t$$semilla[] = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w'. 'x', 'y', 'z');",
-                "\t$$semilla[] = array('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'T', 'V', 'W'. 'X', 'Y', 'Z');",
-                "\t$$semilla[] = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');",
-                "\tif($$especiales){",
-                    "\t\t$$semilla[] = array('$', '#', '%', '&', '@', '-', '?', '¿', '!', '¡', '+', '*');",
+                "\t\\$cadena = \"\";",
+                "\t\\$semilla = array();",
+                "\t\\$semilla[] = array('a', 'e', 'i', 'o', 'u');",
+                "\t\\$semilla[] = array('A', 'E', 'I', 'O', 'U');",
+                "\t\\$semilla[] = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w'. 'x', 'y', 'z');",
+                "\t\\$semilla[] = array('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'T', 'V', 'W'. 'X', 'Y', 'Z');",
+                "\t\\$semilla[] = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');",
+                "\tif(\\$especiales){",
+                    "\t\t\\$semilla[] = array('$', '#', '%', '&', '@', '-', '?', '¿', '!', '¡', '+', '*');",
                 "\t}",
-                "\tfor($$i = 0; $$i < $$longitud; $$i++){",
-                    "\t\t$$valor = mt_rand(0, count($$semilla)-1);",
-                    "\t\t$$posicion = mt_rand(0, count($$semilla[$$valor])-1);",
-                    "\t\t$$cadena .= $$semilla[$$valor][$$posicion];",
+                "\tfor(\\$i = 0; \\$i < \\$longitud; \\$i++){",
+                    "\t\t\\$valor = mt_rand(0, count(\\$semilla)-1);",
+                    "\t\t\\$posicion = mt_rand(0, count\\$$semilla[\\$valor])-1);",
+                    "\t\t\\$cadena .= \\$semilla[\\$valor][\\$posicion];",
                 "\t}",
                "\treturn $$cadena;",
             "}"
