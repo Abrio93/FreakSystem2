@@ -20,6 +20,10 @@
     background-color: #910000;
 }
 
+.navbar-manga .nav-item.login-manga:hover{
+    background-color: #4e9b4b;
+}
+
 .navbar-manga .dropdown-menu{
     background-color: #455B69;
 }
