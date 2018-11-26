@@ -9,9 +9,11 @@ class Usuarios{
     public $correo;
     public $nombre;
     public $apellidos;
+    public $fecha_creacion;
+    public $fecha_modificacion;
 
     public $nombre_tabla = "usuarios";
-    public $campos_tabla = array("id_usuario", "usuario", "pass", "correo", "nombre", "apellidos", "fecha_creacion");
+    public $campos_tabla = array("id_usuario", "usuario", "pass", "correo", "nombre", "apellidos", "fecha_creacion", "fecha_modificacion");
 
     public function getUsuarios(){
         $query = "SELECT * FROM $this->nombre_tabla";
