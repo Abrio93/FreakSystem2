@@ -48,7 +48,7 @@
                     <td><?= $usuario['nombre']." ".$usuario['apellidos']; ?></td>
                     <td><?= date_format(date_create($usuario['fecha_creacion']), 'd-m-Y'); ?></td>
                     <td><?= date_format(date_create($usuario['fecha_modificacion']), 'd-m-Y'); ?></td>
-                    <td><form style='display: inline;' method='post'><input type='hidden' name='id_usuario' value='<?= $usuario['id_usuario']; ?>' /><button type='submit' class='btn btn-link' name='ver'><h4><i class="fas fa-user-edit"></i></h4></button></form><form onsubmit="return confirm('¿Estás seguro?')" style='display: inline;' method='POST'><input type='hidden' name='id_usuario' value='<?= $usuario['id_usuario']; ?>' /><button type='submit' name="borrar" class='btn btn-link'><h4><i class='fas fa-user-minus'></i></h4></button></form></td>
+                    <td><form style='display: inline;' method='post'><input type='hidden' name='id_usuario' value='<?= $usuario['id_usuario']; ?>' /><button type='submit' class='btn btn-link' name='ver'><h4><i class="fas fa-user-edit"></i></h4></button></form><form onsubmit="return confirm('¿Estás seguro?')" style='display: inline;' method='POST'><input type='hidden' name='id_usuario' value='<?= $usuario['id_usuario']; ?>' /><button type='submit' name="borrar" class='btn btn-link'><h4><i class="fas fa-user-times"></i></h4></button></form></td>
                   </tr>
                 <?php
               }
@@ -56,7 +56,7 @@
           </table>
         </div>
         <div class="box-footer">
-          Footer
+          <!-- Footer -->
         </div>
       </div>
     </section>
