@@ -1,8 +1,12 @@
 <?php
 if(isset($_GET['accion'])){
   $accion = $_GET['accion'];
+  $id_accion = $_GET['id_accion'];
+  $id_contenido = $_GET['id_contenido'];
 }else{
   $accion = "default";
+  $id_accion = "2";
+  $id_contenido = "3";
 }
 ?>
 
