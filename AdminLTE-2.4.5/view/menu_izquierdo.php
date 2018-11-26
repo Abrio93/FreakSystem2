@@ -28,9 +28,9 @@
         <?php
           foreach($titulo as $titulo2){
             ?>
-              <li class="treeview <?= ($titulo2['id_menu_izquierdo_titulo'] == $id_accion) ? "active menu-open" : ""; ?>">
+              <li class="treeview <?= ($titulo2['accion'] == $accion) ? "menu-open active" : ""; ?>">
                 <a href="#">
-                <div style="width: 20px; float: left;"><?= $titulo2['icono']; ?></div> <span><?= $titulo2['titulo_menu_izquierdo_titulo']; ?></span>
+                <?= $titulo2['icono']; ?> <span><?= $titulo2['titulo_menu_izquierdo_titulo']; ?></span>
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
@@ -40,7 +40,7 @@
                     foreach($contenido as $contenido2){
                       if($contenido2['id_menu_izquierdo_titulo'] == $titulo2['id_menu_izquierdo_titulo']){
                         ?>
-                        <li class="<?= ($titulo2['id_menu_izquierdo_titulo'] == $id_accion) ? "active" : ""; ?>"><a href="<?= $contenido2['accion']."-".$contenido2['id_menu_izquierdo_titulo']."-".$contenido2['id_menu_izquierdo_contenido']; ?>"> <?= $contenido2['icono']." ".$contenido2['titulo_menu_izquierdo_contenido']; ?></a></li>
+                        <li class="<?= ($contenido2['accion'] == $accion) ? "active" : ""; ?>"><a href="<?= $contenido2['accion']; ?>"> <?= $contenido2['icono']." ".$contenido2['titulo_menu_izquierdo_contenido']; ?></a></li>
                         <?php
                       }
                     }

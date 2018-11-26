@@ -12,4 +12,38 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script lang="text/javascript">
+    function cookie_menu(){
+      var cookie = getCookie("sidebar-collapse");
+      if(cookie != "sidebar-collapse"){
+        document.cookie = "sidebar-collapse=sidebar-collapse; path=/;";
+      }else{
+        document.cookie = "sidebar-collapse=; path=/;";
+      }
+    }
+
+    function cookie(){
+      var cookie = getCookie("sidebar-collapse");
+      if(cookie != "sidebar-collapse"){
+        $(".body-manga").removeClass("sidebar-collapse")
+      }else{
+        $(".body-manga").addClass("sidebar-collapse")
+      }
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+    }
+  </script>
 </head>
