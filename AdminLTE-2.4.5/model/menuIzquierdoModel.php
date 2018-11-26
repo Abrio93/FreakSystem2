@@ -8,7 +8,7 @@ class MenuIzquierdo extends Conexion{
 
     public function getTitulo(){
         try{
-            $query = "SELECT menu_izquierdo_titulo.*, menu_izquierdo_contenido.accion FROM menu_izquierdo_titulo LEFT JOIN menu_izquierdo_contenido ON menu_izquierdo_titulo.id_menu_izquierdo_titulo = menu_izquierdo_contenido.id_menu_izquierdo_titulo ORDER BY posicion";
+            $query = "SELECT menu_izquierdo_titulo.* FROM menu_izquierdo_titulo ORDER BY posicion";
             $sentencia = Conexion::conectar()->query($query);
             $resultado = parent::existe($sentencia, __CLASS__, __FUNCTION__);
             $this->menu_izquierdo_titulo = $resultado;
