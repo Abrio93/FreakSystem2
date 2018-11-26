@@ -46,7 +46,7 @@
                     <td><?= $usuario['correo']; ?></td>
                     <td><?= $usuario['nombre']; ?></td>
                     <td><?= $usuario['apellidos']; ?></td>
-                    <td><form style='display: inline;' action='index.php?accion=editarPersonas' method='post'><input type='hidden' name='id' value='' /><button type='submit' class='btn btn-link'value='editar'><h4><i class="fas fa-user-edit"></i></h4></button></form><form style='display: inline;' action='index.php?accion=bajaPersonas' method='POST'><input type='hidden' name='id' value='' /><button type='submit' class='btn btn-link'><h4><i class='fas fa-user-minus'></i></h4></button></form></td>
+                    <td><form style='display: inline;' action='index.php?accion=editarPersonas' method='post'><input type='hidden' name='id' value='' /><button type='submit' class='btn btn-link'value='editar'><h4><i class="fas fa-user-edit"></i></h4></button></form><form style='display: inline;' method='POST'><input type='hidden' name='id_usuario' value='<?= $usuario['id_usuario']; ?>' /><button type='submit' name="borrar" class='btn btn-link'><h4><i class='fas fa-user-minus'></i></h4></button></form></td>
                   </tr>
                 <?php
               }

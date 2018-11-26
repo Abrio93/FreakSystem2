@@ -11,6 +11,7 @@
       <form method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Usuario</label>
+          <input type="hidden"name="nuevo">
           <input type="text" class="form-control" name="usuario" placeholder="Usuario">
         </div>
         <div class="form-group">
