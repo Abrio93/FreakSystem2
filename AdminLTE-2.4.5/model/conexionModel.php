@@ -11,5 +11,13 @@ class Conexion{
             die("<script>swal('ERROR', '$mensaje', 'error');</script>");
         }
     }
+
+    public function existe($sentencia, $clase, $funcion){
+        if($sentencia){
+            return $resultado = $sentencia->fetchAll();
+        }else{
+            die("<script>swal('Error: $clase - $funcion', 'Consulte con su administrador', 'error');</script>");
+        }
+    }
 }
 ?>

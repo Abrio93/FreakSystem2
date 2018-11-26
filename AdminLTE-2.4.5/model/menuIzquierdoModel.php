@@ -2,7 +2,7 @@
 
 require_once("model/conexionModel.php");
 
-class MenuIzquierdo{
+class MenuIzquierdo extends Conexion{
     public $menu_izquierdo_titulo;
     public $menu_izquierdo_contenido;
 
@@ -10,11 +10,7 @@ class MenuIzquierdo{
         try{
             $query = "SELECT * FROM menu_izquierdo_titulo ORDER BY posicion";
             $sentencia = Conexion::conectar()->query($query);
-            if($sentencia){
-                $resultado = $sentencia->fetchAll();
-            }else{
-                die("<script>swal('Error: 1', 'Consulte con su administrador', 'error');</script>");
-            }
+            $resultado = parent::existe($sentencia, __CLASS__, __FUNCTION__);
             $this->menu_izquierdo_titulo = $resultado;
             return $this->menu_izquierdo_titulo;
         }catch( Error $e){
@@ -26,11 +22,7 @@ class MenuIzquierdo{
         try{
             $query = "SELECT * FROM menu_izquierdo_contenido ORDER BY posicion";
             $sentencia = Conexion::conectar()->query($query);
-            if($sentencia){
-                $resultado = $sentencia->fetchAll();
-            }else{
-                die("<script>swal('Error: 3', 'Consulte con su administrador', 'error');</script>");
-            }
+            $resultado = parent::existe($sentencia, __CLASS__, __FUNCTION__);
             $this->menu_izquierdo_contenido = $resultado;
             return $this->menu_izquierdo_contenido;
         }catch( Error $e){

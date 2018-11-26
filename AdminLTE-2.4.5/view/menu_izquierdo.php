@@ -40,7 +40,7 @@
                     foreach($contenido as $contenido2){
                       if($contenido2['id_menu_izquierdo_titulo'] == $titulo2['id_menu_izquierdo_titulo']){
                         ?>
-                        <li><a href="<?= $contenido2['accion']; ?>"> <?= $contenido2['icono']." ".$contenido2['titulo_menu_izquierdo_contenido']; ?></a></li>
+                        <li><a href="?accion=<?= $contenido2['accion']; ?>"> <?= $contenido2['icono']." ".$contenido2['titulo_menu_izquierdo_contenido']; ?></a></li>
                         <?php
                       }
                     }
