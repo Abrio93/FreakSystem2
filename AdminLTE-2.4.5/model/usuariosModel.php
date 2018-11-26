@@ -61,6 +61,13 @@ class Usuarios{
         $sentencia->execute();
     }
 
+    public function borrarUsuario(){
+        $query = "DELETE FROM $this->nombre_tabla WHERE id_usuario = :id_usuario";
+        $sentencia = Conexion::conectar()->prepare($query);
+        $sentencia->bindParam(":id_usuario", $this->id_usuario);
+        $sentencia->execute();
+    }
+
 
 }
 ?>
