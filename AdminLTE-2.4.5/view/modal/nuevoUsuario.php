@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Insertar un nuevo usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -30,13 +30,13 @@
           <label for="exampleInputEmail1">Apellidos</label>
           <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
       </div>
       <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="reset" class="btn btn-warning">Borrar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

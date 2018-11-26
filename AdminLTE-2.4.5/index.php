@@ -45,7 +45,7 @@ if(isset($_GET['accion'])){
 
   <!-- PRINCIPIO MENU DERECHO -->
     <?php
-      include("view/menu_derecho.php");
+      // include("view/menu_derecho.php");
     ?>
   <!-- FIN MENU DERECHO -->
 </div>
