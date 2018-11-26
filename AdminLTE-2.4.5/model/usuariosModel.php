@@ -11,7 +11,7 @@ class Usuarios{
     public $apellidos;
 
     public $nombre_tabla = "usuarios";
-    public $campos_tabla = array("id_usuario", "usuario", "pass", "correo", "nombre", "apellidos");
+    public $campos_tabla = array("id_usuario", "usuario", "pass", "correo", "nombre", "apellidos", "fecha_creacion");
 
     public function getUsuarios(){
         $query = "SELECT * FROM $this->nombre_tabla";
@@ -47,6 +47,17 @@ class Usuarios{
             $sentencia->bindParam(":$valor", $this->$valor);
         }
         
+        $sentencia->execute();
+    }
+
+    public function insertarUsuario(){
+        $query = "INSERT INTO $this->nombre_tabla (usuario, pass, correo, nombre, apellidos) VALUES (:usuario, :pass, :correo, :nombre, :apellidos)";
+        $sentencia = Conexion::conectar()->prepare($query);
+        $sentencia->bindParam(":usuario", $this->usuario);
+        $sentencia->bindParam(":pass", $this->pass);
+        $sentencia->bindParam(":correo", $this->correo);
+        $sentencia->bindParam(":nombre", $this->nombre);
+        $sentencia->bindParam(":apellidos", $this->apellidos);
         $sentencia->execute();
     }
 

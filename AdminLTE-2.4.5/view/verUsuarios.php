@@ -35,7 +35,7 @@
               <th>Correo</th>
               <th>Nombre</th>
               <th>Apellidos</th>
-              <th><a href="" class="btn btn-primary">Nuevo Usuario</a></th>
+              <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo Usuario</button></th>
             </tr>
             <?php
               foreach($usuarios as $usuario){
