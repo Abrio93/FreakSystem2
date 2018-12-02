@@ -6,20 +6,32 @@ function validar(formulario, configuracion = 0){
                 if(!/^[-\w.%+]{1,64}@(?:[a-z0-9-]{1,63}\.){1,125}[a-z]{2,63}$/.test(formulario.elements[i].value)){
                     if(configuracion == 0){
                         alert("Error: Correo no valido");
+                        formulario.elements[i].focus();
                     }else if(configuracion == 1){
-                        swal("Correo no valido", "error");
+                        swal({
+                            icon: 'error',
+                            title: 'El correo no es valido'
+                        }).then(function(){
+                            swal.close();
+                            formulario.elements[i].focus();
+                        })
                     }
-                    formulario.elements[i].focus();
                     return false;
                     exit(1);
                 }
             }else{
                 if(configuracion == 0){
                     alert("Error: Correo vacío");
+                    formulario.elements[i].focus();
                 }else if(configuracion == 1){
-                    swal("", "Correo vacío", "error");
+                    swal({
+                        icon: 'error',
+                        title: 'El correo no puede quedar vacío'
+                    }).then(function(){
+                        swal.close();
+                        formulario.elements[i].focus();
+                    })
                 }
-                formulario.elements[i].focus();
                 return false;
                 exit(1);
             }
@@ -28,10 +40,16 @@ function validar(formulario, configuracion = 0){
             if(formulario.elements[i].value == ""){
                 if(configuracion == 0){
                     alert("Error: Contraseña Vacía");
+                    formulario.elements[i].focus();
                 }else if(configuracion == 1){
-                    swal("", "Contraseña Vacía", "error");
+                    swal({
+                        icon: 'error',
+                        title: 'La contraseña no puede quedar vacía'
+                    }).then(function(){
+                        swal.close();
+                        formulario.elements[i].focus();
+                    })
                 }
-                formulario.elements[i].focus();
                 return false;
                 exit(1);
             }
@@ -40,10 +58,16 @@ function validar(formulario, configuracion = 0){
             if(formulario.elements[i].value == ""){
                 if(configuracion == 0){
                     alert("Error: Contraseña repetida Vacía");
+                    formulario.elements[i].focus();
                 }else if(configuracion == 1){
-                    swal("", "Contraseña repetida Vacía", "error");
+                    swal({
+                        icon: 'error',
+                        title: 'Repita la contraseña'
+                    }).then(function(){
+                        swal.close();
+                        formulario.elements[i].focus();
+                    })
                 }
-                formulario.elements[i].focus();
                 return false;
                 exit(1);
             }else{
@@ -52,12 +76,20 @@ function validar(formulario, configuracion = 0){
                         if(formulario.elements[i].value != formulario.elements[j].value){
                             if(configuracion == 0){
                                 alert("Error: Las contraseñas no coinciden");
+                                formulario.elements[i].value = "";
+                                formulario.elements[j].value = "";
+                                formulario.elements[j].focus();
                             }else if(configuracion == 1){
-                                swal("", "Las contraseñas no coinciden", "error");
+                                swal({
+                                    icon: 'error',
+                                    title: 'Las contraseñas no coinciden'
+                                }).then(function(){
+                                    swal.close();
+                                    formulario.elements[i].value = "";
+                                    formulario.elements[j].value = "";
+                                    formulario.elements[j].focus();
+                                })
                             }
-                            formulario.elements[i].value = "";
-                            formulario.elements[j].value = "";
-                            formulario.elements[j].focus();
                             return false;
                             exit(1);
                         }
