@@ -36,6 +36,49 @@ function validar(formulario, configuracion = 0){
                 exit(1);
             }
         }
+        if(formulario.elements[i].className.indexOf("correo-r-m") != -1){
+            if(formulario.elements[i].value == ""){
+                if(configuracion == 0){
+                    alert("Error: Correo repetido vacío");
+                    formulario.elements[i].focus();
+                }else if(configuracion == 1){
+                    swal({
+                        icon: 'error',
+                        title: 'Repita el correo'
+                    }).then(function(){
+                        swal.close();
+                        formulario.elements[i].focus();
+                    })
+                }
+                return false;
+                exit(1);
+            }else{
+                for(var j = 0; j < formulario.elements.length; j++){
+                    if(formulario.elements[j].className.indexOf("correo-m") != -1){
+                        if(formulario.elements[i].value != formulario.elements[j].value){
+                            if(configuracion == 0){
+                                alert("Error: Los correos no coinciden");
+                                formulario.elements[i].value = "";
+                                formulario.elements[j].value = "";
+                                formulario.elements[j].focus();
+                            }else if(configuracion == 1){
+                                swal({
+                                    icon: 'error',
+                                    title: 'Los correos no coinciden'
+                                }).then(function(){
+                                    swal.close();
+                                    formulario.elements[i].value = "";
+                                    formulario.elements[j].value = "";
+                                    formulario.elements[j].focus();
+                                })
+                            }
+                            return false;
+                            exit(1);
+                        }
+                    }
+                }
+            }
+        }
         if(formulario.elements[i].className.indexOf("pass-m") != -1){
             if(formulario.elements[i].value == ""){
                 if(configuracion == 0){
@@ -100,3 +143,4 @@ function validar(formulario, configuracion = 0){
     }
     return true;
 }
+
