@@ -1,0 +1,23 @@
+code --install-extension aaron-bond.better-comments
+code --install-extension alefragnani.Bookmarks
+code --install-extension bmewburn.vscode-intelephense-client
+code --install-extension CoenraadS.bracket-pair-colorizer
+code --install-extension DEVSENSE.phptools-vscode
+code --install-extension donjayamanne.bower
+code --install-extension ealsur.bowerwatcher
+code --install-extension eamodio.gitlens
+code --install-extension eg2.vscode-npm-script
+code --install-extension eiminsasete.apacheconf-snippets
+code --install-extension fabiospampinato.vscode-open-in-terminal
+code --install-extension felixfbecker.php-intellisense
+code --install-extension formulahendry.auto-rename-tag
+code --install-extension HvyIndustries.crane
+code --install-extension hwencc.html-tag-wrapper
+code --install-extension ikappas.phpcs
+code --install-extension MehediDracula.php-namespace-resolver
+code --install-extension mrmlnc.vscode-apache
+code --install-extension MS-CEINTL.vscode-language-pack-es
+code --install-extension robertohuertasm.vscode-icons
+code --install-extension Shan.code-settings-sync
+code --install-extension zhuangtongfa.Material-theme
+

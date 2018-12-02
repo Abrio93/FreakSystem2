@@ -1,0 +1,83 @@
+{
+    "php.validate.executablePath": "C:/xampp/php/php.exe",
+    "php.executablePath": "C:/xampp/php/php.exe",
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 1,
+    "git.defaultCloneDirectory": "",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "editor.cursorBlinking": "smooth",
+    "window.menuBarVisibility": "default",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": true,
+    "editor.renderControlCharacters": false,
+    "breadcrumbs.enabled": false,
+    "debug.node.autoAttach": "off",
+    "php.suggest.basic": false,
+    "emmet.syntaxProfiles": {
+        "html": "xhtml",
+        "xml": {
+            "tag_case": "upper",
+            "attr_quotes": "single"
+        }
+    },
+    "php.validate.enable": false,
+    "emmet.excludeLanguages": [
+        "markdown",
+        "php"
+    ],
+    "phpTools.language": "es",
+    "indenticator.inner.color.dark": "true",
+    "todo-tree.defaultHighlight": {
+        "foreground": "green",
+        "type": "none"
+    },
+    "todo-tree.customHighlight": {
+        "TODO": {},
+        "FIXME": {}
+    },
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "vscode-icons",
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "todo",
+            "color": "#FFFF00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "INFO",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        }
+    ],
+}
