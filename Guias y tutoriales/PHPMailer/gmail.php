@@ -7,14 +7,15 @@ require "SMTP.php";
 $mail = new PHPMailer\PHPMailer\PHPMailer;
 $mail->isSMTP();//? USAR SMTP
 
-//* PARA SUPRIMIR ERROR (BUSCADO EN INTERNET)
+//INFO PARA SUPRIMIR ERROR (BUSCADO EN INTERNET)
 $mail->SMTPOptions = array(
     'ssl' => array(
         'verify_peer' => false,
         'verify_peer_name' => false,
         'allow_self_signed' => true
     )
-);//*---------------------------------------
+);
+//INFO PARA SUPRIMIR ERROR (BUSCADO EN INTERNET)
 
 $mail->SMTPDebug = 0; //?DEBUGGING SMTP (0 - OFF, 1 - MENSAJES DE CLIENTES, 2 - MENSAJES DE CLIENTES Y SERVIDORES)
 $mail->Host = 'smtp.gmail.com';//? SERVIDOR GMAIL
