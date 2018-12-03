@@ -1,5 +1,7 @@
 <?php
 
+//TODO IMPORTAR XLSX (ESCEL)
+
 require_once "PHPExcel/IOFactory.php"; //? INCLUYO LA CLASE IOFACTORY DE PHPEXCEL
 
 if(isset($_FILES['archivo'])){
