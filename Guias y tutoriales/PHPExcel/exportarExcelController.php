@@ -2,34 +2,44 @@
 
     require_once "PHPExcel.php";
 
-    // Create your database query
-    $query = "SELECT * FROM categorias";
+    $nombre_tabla = "libros";
 
-    $conexion = mysqli_connect("localhost", "root", "", "carrocompras");
-
-    // Execute the database query
-    $result = mysqli_query($conexion, $query) or die(mysqli_error());
-
+    $conexion = new PDO('mysql:host=localhost;dbname=carrocompras;charset=utf8;','root','');
+    
+    $query = "DESCRIBE $nombre_tabla";
+    $sentencia = $conexion->query($query);
+    $resultado = $sentencia->fetchAll(PDO::FETCH_COLUMN);
+    
+    $query2 = "SELECT * FROM $nombre_tabla";
+    $sentencia2 = $conexion->query($query2);
+    $resultado2 = $sentencia2->fetchAll(PDO::FETCH_ASSOC);
 
     // Create new PHPExcel object
-    $objPHPExcel = new PHPExcel();
+    $objPHPExcel = new PHPExcel(); //? CREO EL OBJETO
 
     // Add some data
     $objPHPExcel->setActiveSheetIndex(0);
 
-    $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Campo1');
+    //? ESCRIBO EL NOMBRE DE LA COLUMNA EN LA HOJA DE EXCEL (chr DEVUELVE EL CARACTER SEGUN SU NUMERO --> 65 = A, 66 = B,...)
+    foreach($resultado as $key => $valor){ //? RECORRO EL ARRAY
+        $objPHPExcel->getActiveSheet()->SetCellValue(chr($key + 65)."1", $valor);
+        
+    }
 
-    $rowCount = 2; //new
+    $fila = 2;
+    $letra = 65;
 
-    while($row = mysqli_fetch_array($result)){ 
-        $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $row[0]);
-
-        // Increment the Excel row counter
-        $rowCount++; 
+    foreach($resultado2 as $valor){
+        foreach($valor as $valor2){
+            $objPHPExcel->getActiveSheet()->SetCellValue(chr($letra).$fila, $valor2);
+            $letra++;
+        }
+        $fila++;
+        $letra = 65;
     }
 
     // Rename worksheet
-    $objPHPExcel->getActiveSheet()->setTitle('Excel');
+    $objPHPExcel->getActiveSheet()->setTitle($nombre_tabla);
 
 
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
@@ -38,7 +48,7 @@
 
     // Redirect output to a client’s web browser (Excel5)
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="Export_Excel_'.date('Y-m-d').'.xls"');
+    header('Content-Disposition: attachment;filename="Tabla_'.$nombre_tabla."_".date('d-m-Y-H-i-s').'.xls"');
     header('Cache-Control: max-age=0');
     // If you're serving to IE 9, then the following may be needed
     header('Cache-Control: max-age=1');
