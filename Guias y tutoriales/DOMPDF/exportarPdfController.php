@@ -17,7 +17,8 @@ $dompdf->setPaper('A4', 'vertical');
 // Render the HTML as PDF
 $dompdf->render();
 
-// Output the generated PDF to Browser
-$dompdf->stream();
+$nombre = date('d-m-Y-H-i-s').".pdf";
 
+// Output the generated PDF to Browser
+$dompdf->stream($nombre);
 ?>
