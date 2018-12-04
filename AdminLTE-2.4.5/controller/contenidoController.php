@@ -1,3 +1,3 @@
 <?php
-    require_once "view/contenido/".$vista.".phtml";
+    require_once "controller/".$contenido."Controller.php";
 ?>
