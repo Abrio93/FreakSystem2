@@ -1,6 +1,6 @@
 <?php
 
-    $ficheros = array("Default", "404");
+    $ficheros = array("default", "404", "perfil");
     $existe = 0;
 
     if(isset($_GET['vista'])){
@@ -10,6 +10,6 @@
             $vista = "404";
         }
     }else{
-        $vista = "Default";
+        $vista = "default";
     }
 ?>
