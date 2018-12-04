@@ -12,7 +12,7 @@ $dompdf = new Dompdf();
 $dompdf->loadHtml(file_get_contents("ejemplo.php"));
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'vertical');
 
 // Render the HTML as PDF
 $dompdf->render();

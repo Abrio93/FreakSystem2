@@ -1,8 +1,8 @@
 
-<h1>Mi primer reporte</h1>
-<p>Hemos creado nuestro reporte usando PHP y HTML.</p>
+<h1 align="center">Mi primer reporte</h1>
+<p align="center">Hemos creado nuestro reporte usando PHP y HTML.</p>
 
-<table>
+<table align="center" border="1px solid black" cellspacing="0">
     <thead>
         <tr>
             <th >Nombre</th>
