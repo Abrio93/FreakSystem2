@@ -32,6 +32,7 @@
   ],
   "dependencies": {
     "sweetalert2": "*",
+    "izimodal": "*",
     "bootstrap-slider": "*",
     "chart.js": "1.0.*",
     "ckeditor": "^4.7.0",
