@@ -1,15 +1,15 @@
 <?php
 
-    $ficheros = array("default", "404", "perfil");
+    $ficheros = array("Default", "404", "Perfil");
     $existe = 0;
 
-    if(isset($_GET['vista'])){
-        if(in_array($_GET['vista'], $ficheros)){
-            $vista = $_GET['vista'];
+    if(isset($_GET['contenido'])){
+        if(in_array($_GET['contenido'], $ficheros)){
+            $contenido = $_GET['contenido'];
         }else{
-            $vista = "404";
+            $contenido = "404";
         }
     }else{
-        $vista = "default";
+        $contenido = "Default";
     }
 ?>
