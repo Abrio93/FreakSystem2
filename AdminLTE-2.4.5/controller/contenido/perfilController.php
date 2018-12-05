@@ -3,6 +3,8 @@
     require_once "model/imagenModel.php";
     require_once "model/sesionModel.php";
 
+    $silebar = "panel"; //? VARIABLE DECLARADA PARA SEÑALAR EN EL SILEBAR DONDE ESTAMOS
+
     if(isset($_POST['id_usuario']) && isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['correo']) && isset($_POST['usuario'])){
         $anterior = Usuario::consultarId($_POST['id_usuario']);
         $usuario = new Usuario();
