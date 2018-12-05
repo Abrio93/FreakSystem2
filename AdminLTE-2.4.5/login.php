@@ -38,10 +38,10 @@
 
     <form action="index1.php" method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+        <input type="text" class="form-control" name="usuario" value="manga" placeholder="Usuario">
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="pass" placeholder="Contraseña">
+        <input type="password" class="form-control" name="pass" value="123" placeholder="Contraseña">
       </div>
       <div class="row">
         <!-- <div class="col-xs-8">
