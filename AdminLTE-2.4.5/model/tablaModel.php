@@ -115,8 +115,6 @@ class Tabla
 
         $query .= implode(", ", $modificar)." WHERE ".static::$campos_tabla[0]." = :".static::$campos_tabla[0];
 
-        echo $query;
-
         $sentencia = static::Conectar()->prepare($query);
 
         foreach(static::$campos_tabla as $campo)
