@@ -30,18 +30,19 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>Admin</b>LTE</a>
+    <a href="index2.html"><b>Freak</b>System</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Inicie sesión para empezar</p>
+    <?= (isset($_GET['error']) ? "<div class='alert alert-danger' role='alert'>Ha ocurrido un error al iniciar sesión</div>" : ""); ?>
 
     <form action="index1.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="usuario" value="manga" placeholder="Usuario">
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="pass" value="123" placeholder="Contraseña">
+        <input type="password" class="form-control" name="pass" value="a" placeholder="Contraseña">
       </div>
       <div class="row">
         <!-- <div class="col-xs-8">
@@ -68,8 +69,8 @@
     </div> -->
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <!-- <a href="#">I forgot my password</a><br>
+    <a href="register.html" class="text-center">Register a new membership</a> -->
 
   </div>
   <!-- /.login-box-body -->

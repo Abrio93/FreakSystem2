@@ -41,6 +41,7 @@
               <div class="active tab-pane" id="settings">
                 <form method="POST" enctype="multipart/form-data" class="form-horizontal">
                 <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
+                <input type="hidden" name="ajustes" />
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Nombre</label>
 
@@ -79,7 +80,7 @@
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-primary">Guardar</button>
-                      <button type="button" class="btn btn-warning">Cambiar contraseña</button>
+                      <a  href="#" class="btn btn-warning" data-izimodal-open="#cambiar_password" data-izimodal-transitionin="fadeInDown">Cambiar contraseña</a>
                     </div>
                   </div>
                 </form>
@@ -91,3 +92,23 @@
 
     </section>
   </div>
+
+  <!-- MODALES -->
+
+  <div id="cambiar_password" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
+  <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+    <form method="POST">
+    <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
+    <input type="hidden" name="cambio_password" />
+      <div class="form-group">
+        <label>Nueva contraseña</label>
+        <input type="text" class="form-control" name="password" placeholder="Contraseña" />
+      </div>
+      <div class="form-group">
+        <label>Repita contraseña</label>
+        <input type="text" class="form-control" name="password_repetida" placeholder="Repita Contraseña" />
+      </div>
+      <input type="submit" class="btn btn-primary" value="Guardar" />
+    </form>
+  </div>
+</div>

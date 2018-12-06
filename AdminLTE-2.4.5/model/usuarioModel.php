@@ -20,11 +20,20 @@ class Usuario extends Tabla{
         $query = "SELECT * FROM ".static::$nombre_tabla." WHERE usuario = '$usuario'";
         $sentencia = static::Conectar()->query($query);
         $resultado = $sentencia->fetch(PDO::FETCH_OBJ);
-        if($resultado->password == $pass){
+        if($resultado->password == static::encriptarPassword($pass)){
             return $resultado;
         }else{
             return false;
         }
+    }
+
+    public function comprobarPassword(){
+        $this->password = hash("sha512", $this->password);
+        return true;
+    }
+
+    public function encriptarPassword($password){
+        return hash("sha512", $password);
     }
 }
 
