@@ -22,12 +22,19 @@ class Tabla
         }
     }
 
-    public static function consultarTodos()
+    public static function consultarTodos($orden = -1, $tipo_orden = "DESC")
     {
-        $query = "SELECT * FROM ".static::$nombre_tabla;
-        $sentencia = static::Conectar()->query($query);
-        $resultado = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $resultado;
+        if($orden == -1){
+            $query = "SELECT * FROM ".static::$nombre_tabla;
+            $sentencia = static::Conectar()->query($query);
+            $resultado = $sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $resultado;
+        }else{
+            $query = "SELECT * FROM ".static::$nombre_tabla." ORDER BY $orden $tipo_orden";
+            $sentencia = static::Conectar()->query($query);
+            $resultado = $sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $resultado;
+        }
     }
 
     public static function consultarTodosPaginado($pagina_actual, $total_por_pagina)
