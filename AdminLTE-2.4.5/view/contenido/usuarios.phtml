@@ -54,14 +54,10 @@
                       <td><?= $usuario->nombre." ".$usuario->apellidos; ?></td>
                       <td><?= Usuario::fecha($usuario->fecha_registro); ?></td>
                       <td>
+                        <a href="#" class="btn btn-link" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
                         <form style="display: inline;" method="POST">
-                          <input type="hidden" name="ide_usuario" value="<?= $usuario->id_usuario; ?>" />
-                          <input type="hidden" name="ide_usuario" value="editar" />
-                          <button class="btn btn-link" type="submit"><i class="far fa-edit"></i></button>
-                        </form>
-                        <form style="display: inline;" method="POST">
-                          <input type="hidden" name="ide_usuario" value="<?= $usuario->id_usuario; ?>" />
-                          <input type="hidden" name="ide_usuario" value="eliminar" />
+                          <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
+                          <input type="hidden" name="eliminar" />
                           <button class="btn btn-link" type="submit"><i class="far fa-trash-alt"></i></button>
                         </form>
                       </td>
@@ -94,13 +90,36 @@
   </div>
   <!-- /.content-wrapper -->
 
+  <!-- MODALES -->
+
+  <div id="editar_usuario" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
+  <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+    <form method="POST">
+    <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
+    <input type="hidden" name="editar " />
+      <div class="form-group">
+        <label>Nueva contraseña</label>
+        <input type="text" class="form-control" name="password" placeholder="Contraseña" />
+      </div>
+      <div class="form-group">
+        <label>Repita contraseña</label>
+        <input type="text" class="form-control" name="password_repetida" placeholder="Repita Contraseña" />
+      </div>
+      <input type="submit" class="btn btn-primary" value="Guardar" />
+    </form>
+  </div>
+</div>
+
 
 
 <script>
+  $(document).ready(function () {
     $('#tabla_usuarios').DataTable({
         "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         },
         'order': [[0, 'desc']]
     });
+    $("#editar_usuario").iziModal();
+  })
 </script>
