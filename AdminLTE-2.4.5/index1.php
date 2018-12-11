@@ -13,7 +13,3 @@
 
   require_once "controller/footerController.php"; //? LLAMO AL FOOTER
 ?>
-
-
-
-
