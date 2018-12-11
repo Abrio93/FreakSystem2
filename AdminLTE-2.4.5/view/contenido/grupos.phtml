@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Usuarios
+        Grupos
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Usuarios</a></li>
-        <li class="active">Usuarios</li>
+        <li class="active">Grupos</li>
       </ol>
     </section>
 
@@ -20,7 +20,7 @@
   <div class="col-md-12 ">
     <div class="box box-success">
       <div class="box-header with-border">
-        <h3 class="box-title">Usuarios</h3>
+        <h3 class="box-title">Grupos</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -32,31 +32,29 @@
       </div>
       <div class="box-body">
         <div>
-          <table id="tabla_usuarios" class="table table-hover">
+          <table id="tabla_grupos" class="table table-hover">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Permiso</th>
                 <th>Fecha</th>
-                <th><center><button class="btn btn-primary">Nuevo Usuario</button></center></th>
+                <th><center><button class="btn btn-primary">Nuevo Grupo</button></center></th>
               </tr>
             </thead>
             <tbody>
               <?php
-                foreach($usuarios as $usuario){
+                foreach($grupos as $grupo){
                   ?>
                     <tr>
-                      <td><?= $usuario->id_usuario; ?></td>
-                      <td><?= $usuario->usuario; ?></td>
-                      <td><?= $usuario->correo; ?></td>
-                      <td><?= $usuario->nombre." ".$usuario->apellidos; ?></td>
-                      <td><?= Usuario::fecha($usuario->fecha_registro); ?></td>
+                      <td><?= $grupo->id_grupo; ?></td>
+                      <td><?= $grupo->grupo; ?></td>
+                      <td><?= $grupo->permiso; ?></td>
+                      <td><?= Grupo::fecha($grupo->fecha); ?></td>
                       <td align="center">
-                        <a href="#" class="btn btn-link" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
+                        <a href="#" class="btn btn-link" data-izimodal-open="#editar_grupo" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
                         <form style="display: inline;" method="POST">
-                          <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
+                          <input type="hidden" name="id_grupo" value="<?= $usuario->id_usuario; ?>" />
                           <input type="hidden" name="eliminar" />
                           <button class="btn btn-link" type="submit"><i class="far fa-trash-alt"></i></button>
                         </form>
@@ -69,9 +67,8 @@
             <tbody>
               <tr>
                 <th>#</th>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Permiso</th>
                 <th>Fecha</th>
               </tr>
             </tbody>
@@ -91,7 +88,7 @@
 
   <!-- MODALES -->
 
-  <div id="editar_usuario" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
+  <div id="editar_grupo" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
   <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
     <form method="POST">
     <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
@@ -113,19 +110,19 @@
 
 <script>
   $(document).ready(function () {
-    $('#tabla_usuarios').DataTable({
+    $('#tabla_grupos').DataTable({
         "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         },
         'order': [[0, 'desc']],
         "columnDefs": [
           {
-              "targets": [ 5 ],
+              "targets": [ 4 ],
               "searchable": false,
               "bSortable": false
           }
         ]
     });
-    $("#editar_usuario").iziModal();
+    $("#editar_grupo").iziModal();
   })
 </script>
