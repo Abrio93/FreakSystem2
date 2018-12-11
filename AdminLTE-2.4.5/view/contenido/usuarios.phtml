@@ -40,7 +40,7 @@
                 <th>Correo</th>
                 <th>Nombre</th>
                 <th>Fecha</th>
-                <th><button class="btn btn-primary">Nuevo Usuario</button></th>
+                <th><center><button class="btn btn-primary">Nuevo Usuario</button></center></th>
               </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@
                       <td><?= $usuario->correo; ?></td>
                       <td><?= $usuario->nombre." ".$usuario->apellidos; ?></td>
                       <td><?= Usuario::fecha($usuario->fecha_registro); ?></td>
-                      <td>
+                      <td align="center">
                         <a href="#" class="btn btn-link" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
                         <form style="display: inline;" method="POST">
                           <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
@@ -118,7 +118,14 @@
         "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         },
-        'order': [[0, 'desc']]
+        'order': [[0, 'desc']],
+        "columnDefs": [
+          {
+              "targets": [ 5 ],
+              "searchable": false,
+              "bSortable": false
+          }
+        ]
     });
     $("#editar_usuario").iziModal();
   })
