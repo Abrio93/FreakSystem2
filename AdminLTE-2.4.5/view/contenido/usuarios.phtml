@@ -94,19 +94,46 @@
   <div id="editar_usuario" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
   <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
     <form method="POST">
-    <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
-    <input type="hidden" name="editar " />
+    <input type="hidden" name="id_usuario" />
+    <input type="hidden" name="editar_usuario" />
       <div class="form-group">
-        <label>Nueva contraseña</label>
-        <input type="text" class="form-control" name="password" placeholder="Contraseña" />
+        <label>Nombre</label>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required />
       </div>
       <div class="form-group">
-        <label>Repita contraseña</label>
-        <input type="text" class="form-control" name="password_repetida" placeholder="Repita Contraseña" />
+        <label>Apellidos</label>
+        <input type="text" class="form-control" name="apellidos"" placeholder="Apellidos" required />
+      </div>
+      <div class="form-group">
+        <label>Correo</label>
+        <input type="email" class="form-control" name="correo" placeholder="Correo" required />
+      </div>
+      <div class="form-group">
+        <label>Usuario</label>
+        <input type="text" class="form-control" name="usuario" placeholder="Usuario" required />
       </div>
       <input type="submit" class="btn btn-primary" value="Guardar" />
+      <a href="#" class="btn btn-link" data-izimodal-open="#editar_pass" data-izimodal-transitionin="fadeInDown">Cambiar contraseña</i></a>
     </form>
   </div>
+</div>
+
+<div id="editar_pass" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
+<div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+  <form method="POST">
+  <input type="hidden" name="id_usuario" />
+  <input type="hidden" name="editar_pass" />
+    <div class="form-group">
+      <label>Nueva contraseña</label>
+      <input type="text" class="form-control" name="password" placeholder="Contraseña" required />
+    </div>
+    <div class="form-group">
+      <label>Repita contraseña</label>
+      <input type="text" class="form-control" name="password_repetida" placeholder="Repita Contraseña" required />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Guardar" />
+  </form>
+</div>
 </div>
 
 
@@ -127,5 +154,6 @@
         ]
     });
     $("#editar_usuario").iziModal();
+    $("#editar_pass").iziModal();
   })
 </script>
