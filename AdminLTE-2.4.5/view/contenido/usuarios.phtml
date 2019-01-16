@@ -54,7 +54,7 @@
                       <td><?= $usuario->nombre." ".$usuario->apellidos; ?></td>
                       <td><?= Usuario::fecha($usuario->fecha_registro); ?></td>
                       <td align="center">
-                        <a href="#" class="btn btn-link" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
+                        <a href="#" class="btn btn-link" onclick="ver_usuario(<?= $usuario->id_usuario; ?>)" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
                         <form style="display: inline;" method="POST">
                           <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
                           <input type="hidden" name="eliminar" />
@@ -93,7 +93,7 @@
 
   <div id="editar_usuario" data-izimodal-fullscreen="true" data-izimodal-title="Cambio de contraseña" data-izimodal-icon="icon-home" aria-hidden="false" aria-labelledby="modal-default" role="dialog" class="iziModal" data-izimodal-loop="true" >
   <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
-    <form method="POST">
+    <form method="POST" name="editar_usuario">
     <input type="hidden" name="id_usuario" />
     <input type="hidden" name="editar_usuario" />
       <div class="form-group">
@@ -155,5 +155,23 @@
     });
     $("#editar_usuario").iziModal();
     $("#editar_pass").iziModal();
+
   })
+
+function ver_usuario(id_usuario){
+  $.ajax({
+    url: "AJAX/usuariosAjax.php",
+    method: "POST",
+    async: true,
+    data: {"ver_usuario" : "", "id" : id_usuario},
+    dataType: "json",
+    success: function(respuesta) {
+      $("form[name=editar_usuario] input[name=id_usuario]").val(respuesta.datos.id_usuario);
+      $("form[name=editar_usuario] input[name=nombre]").val(respuesta.datos.nombre);
+      $("form[name=editar_usuario] input[name=apellidos]").val(respuesta.datos.apellidos);
+      $("form[name=editar_usuario] input[name=correo]").val(respuesta.datos.correo);
+      $("form[name=editar_usuario] input[name=usuario]").val(respuesta.datos.usuario);
+    }
+  });
+}
 </script>

@@ -1,6 +1,7 @@
 <?php
 
-require_once "config.php";
+require_once "inicioModel.php";
+require_once RAIZ_DIR.SD."config.php";
 require_once "paginacionModel.php";
 
 class Tabla

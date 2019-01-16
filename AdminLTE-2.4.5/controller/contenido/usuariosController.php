@@ -38,6 +38,14 @@
             echo Swal::alerta("Datos guardados correctamente", "success", "", "1500");
         }
     }
+    
+    if(isset($_POST['datos'])){
+        $usuario = Usuario::consultarId($_POST['id']);
+        $jsondata = array();
+        $jsondata['success'] = true;
+        $jsondata['datos'] = $usuario;
+        echo json_encode($jsondata);
+    }
 
     $usuarios = Usuario::consultarTodos();
 
