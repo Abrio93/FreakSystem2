@@ -112,7 +112,7 @@
         <label>Usuario</label>
         <input type="text" class="form-control" name="usuario" placeholder="Usuario" required />
       </div>
-      <input type="submit" class="btn btn-primary" value="Guardar" />
+      <input type="button" class="btn btn-primary" value="Guardar" onclick="guardar()" />
       <a href="#" class="btn btn-link" data-izimodal-open="#editar_pass" data-izimodal-transitionin="fadeInDown">Cambiar contraseña</i></a>
     </form>
   </div>
@@ -171,6 +171,25 @@ function ver_usuario(id_usuario){
       $("form[name=editar_usuario] input[name=apellidos]").val(respuesta.datos.apellidos);
       $("form[name=editar_usuario] input[name=correo]").val(respuesta.datos.correo);
       $("form[name=editar_usuario] input[name=usuario]").val(respuesta.datos.usuario);
+    }
+  });
+}
+
+function guardar(){
+  $.ajax({
+    url: "AJAX/usuariosAjax.php",
+    method: "POST",
+    async: true,
+    data: $("form[name=editar_usuario]").serialize(),
+    success: function() {
+    $("#editar_usuario").iziModal('close');
+      swal({
+        position: '',
+        type: 'success',
+        title: 'Datos guardados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   });
 }
