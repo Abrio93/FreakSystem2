@@ -130,9 +130,14 @@ $(document).ready(function() {
       { "data": "id_usuario" },
       { "data": "usuario" },
       { "data": "correo" },
-      { "data": "nombre" },
-      { "data": "fecha_registro" },
-      { "data": null }
+      { "data": null, render: function ( data, type, row ) {
+        return data.nombre + " " + data.apellidos;
+      }},
+      { "data": null, render: function ( data, type, row ) {
+        var fecha = new Date(data.fecha_registro)
+        return fecha.getDay() + "-" + fecha.getMonth() + "-" + fecha.getFullYear();
+      }},
+      { "data": null },
     ],
       "columnDefs": [
       {
@@ -144,6 +149,7 @@ $(document).ready(function() {
       }
     ]
   });
+  
   $('#tabla_usuarios tbody').on( 'click', 'a.editar', function () {
       var data = table.row( $(this).parents('tr') ).data();
       ver_usuario(data.id_usuario);
