@@ -25,10 +25,10 @@
 
     Usuario::modificar($usuario);
 
-    $log = new Log();
-    $log->id_usuario = $sesion->id_usuario;
-    $log->accion = "El usuario ha cambiado los ajustes del id_usuario: $usuario->id_usuario";
-    Log::insertar($log);
+    // $log = new Log();
+    // $log->id_usuario = $sesion->id_usuario;
+    // $log->accion = "El usuario ha cambiado los ajustes del id_usuario: $usuario->id_usuario";
+    // Log::insertar($log);
     
     }
 
