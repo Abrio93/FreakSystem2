@@ -37,7 +37,7 @@
     <p class="login-box-msg">Inicie sesión para empezar</p>
     <?= (isset($_GET['error']) ? "<div class='alert alert-danger' role='alert'>Ha ocurrido un error al iniciar sesión</div>" : ""); ?>
 
-    <form action="index1.php" method="post">
+    <form action="index.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="usuario" value="manga" placeholder="Usuario">
       </div>
