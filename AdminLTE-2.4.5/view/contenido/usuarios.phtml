@@ -136,14 +136,11 @@ $(document).ready(function() {
     ],
       "columnDefs": [
       {
-        "targets": -1,
-        "defaultContent": "<a href='#' class='btn btn-link editar' data-izimodal-open='#editar_usuario' data-izimodal-transitionin='fadeInDown'><i class='far fa-edit'></i></a><button class='btn btn-link borrar'><i class='far fa-trash-alt'></i></button>"
-      },
-      {
-      "targets": 5, // your case first column
-      "className": "text-center",
-      "orderable": false,
-      "searchable": false
+        "targets": 5,
+        "defaultContent": "<a href='#' class='btn btn-link editar' data-izimodal-open='#editar_usuario' data-izimodal-transitionin='fadeInDown'><i class='far fa-edit'></i></a><button class='btn btn-link borrar'><i class='far fa-trash-alt'></i></button>",
+        "className": "text-center",
+        "orderable": false,
+        "searchable": false
       }
     ]
   });
@@ -153,7 +150,7 @@ $(document).ready(function() {
   });
   $('#tabla_usuarios tbody').on( 'click', 'button.borrar', function () {
       var data = table.row( $(this).parents('tr') ).data();
-      alert(data.usuario);
+      alert(data.id_usuario);
   });
 
   $("#editar_usuario").iziModal();
