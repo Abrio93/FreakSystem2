@@ -31,52 +31,7 @@
         </div>
       </div>
       <div class="box-body">
-        <div>
-          <table id="tabla_usuarios" class="table table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th><center><button class="btn btn-primary">Nuevo Usuario</button></center></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                foreach($usuarios as $usuario){
-                  ?>
-                    <tr>
-                      <td><?= $usuario->id_usuario; ?></td>
-                      <td><?= $usuario->usuario; ?></td>
-                      <td><?= $usuario->correo; ?></td>
-                      <td><?= $usuario->nombre." ".$usuario->apellidos; ?></td>
-                      <td><?= Usuario::fecha($usuario->fecha_registro); ?></td>
-                      <td align="center">
-                        <a href="#" class="btn btn-link" onclick="ver_usuario(<?= $usuario->id_usuario; ?>)" data-izimodal-open="#editar_usuario" data-izimodal-transitionin="fadeInDown"><i class="far fa-edit"></i></a>
-                        <form style="display: inline;" method="POST">
-                          <input type="hidden" name="id_usuario" value="<?= $usuario->id_usuario; ?>" />
-                          <input type="hidden" name="eliminar" />
-                          <button class="btn btn-link" type="submit"><i class="far fa-trash-alt"></i></button>
-                        </form>
-                      </td>
-                    </tr>
-                  <?php
-                }
-              ?>
-            </tbody>
-            <tbody>
-              <tr>
-                <th>#</th>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Nombre</th>
-                <th>Fecha</th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div id="caja_usuarios"></div>
       </div>
     </div>
   </div>
@@ -140,6 +95,7 @@
 
 <script>
   $(document).ready(function () {
+    cargar_usuarios();
     $('#tabla_usuarios').DataTable({
         "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -190,6 +146,19 @@ function guardar(){
         showConfirmButton: false,
         timer: 1500
       });
+    }
+  });
+}
+
+function cargar_usuarios(){
+  $.ajax({
+    url: "AJAX/usuariosAjax.php",
+    method: "POST",
+    async: true,
+    data: {"ver_usuarios" : ""},
+    dataType: "text",
+    success: function(respuesta) {
+      $("#caja_usuarios").html(respuesta);
     }
   });
 }
