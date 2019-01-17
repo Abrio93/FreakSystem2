@@ -96,19 +96,6 @@
 <script>
   $(document).ready(function () {
     cargar_usuarios();
-    $('#tabla_usuarios').DataTable({
-        "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-        },
-        'order': [[0, 'desc']],
-        "columnDefs": [
-          {
-              "targets": [ 5 ],
-              "searchable": false,
-              "bSortable": false
-          }
-        ]
-    });
     $("#editar_usuario").iziModal();
     $("#editar_pass").iziModal();
 
@@ -156,9 +143,22 @@ function cargar_usuarios(){
     method: "POST",
     async: true,
     data: {"ver_usuarios" : ""},
-    dataType: "text",
+    dataType: "html",
     success: function(respuesta) {
       $("#caja_usuarios").html(respuesta);
+      $('#tabla_usuarios').DataTable({
+          "language": {
+          "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+          },
+          'order': [[0, 'desc']],
+          "columnDefs": [
+            {
+                "targets": [ 5 ],
+                "searchable": false,
+                "bSortable": false
+            }
+          ]
+      });
     }
   });
 }
