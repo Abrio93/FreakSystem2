@@ -31,7 +31,29 @@
         </div>
       </div>
       <div class="box-body">
-        <div id="caja_usuarios"></div>
+        <div id="caja_usuarios">
+        <table id="tabla_usuarios" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th><center><button class="btn btn-primary">Nuevo Usuario</button></center></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
       </div>
     </div>
   </div>
@@ -94,12 +116,49 @@
 
 
 <script>
-  $(document).ready(function () {
-    cargar_usuarios();
-    $("#editar_usuario").iziModal();
-    $("#editar_pass").iziModal();
+$(document).ready(function() {
+  var table = $('#tabla_usuarios').DataTable( {
+      "processing": true,
+      "ajax": {
+          "url": "AJAX/usuariosAjax.php",
+          "type": "POST",
+          "data": function (e) {
+                e.ver_usuarios = "";
+            }
+      },
+    "columns": [
+      { "data": "id_usuario" },
+      { "data": "usuario" },
+      { "data": "correo" },
+      { "data": "nombre" },
+      { "data": "fecha_registro" },
+      { "data": null }
+    ],
+      "columnDefs": [
+      {
+        "targets": -1,
+        "defaultContent": "<a href='#' class='btn btn-link editar' data-izimodal-open='#editar_usuario' data-izimodal-transitionin='fadeInDown'><i class='far fa-edit'></i></a><button class='btn btn-link borrar'><i class='far fa-trash-alt'></i></button>"
+      },
+      {
+      "targets": 5, // your case first column
+      "className": "text-center",
+      "orderable": false,
+      "searchable": false
+      }
+    ]
+  });
+  $('#tabla_usuarios tbody').on( 'click', 'a.editar', function () {
+      var data = table.row( $(this).parents('tr') ).data();
+      ver_usuario(data.id_usuario);
+  });
+  $('#tabla_usuarios tbody').on( 'click', 'button.borrar', function () {
+      var data = table.row( $(this).parents('tr') ).data();
+      alert(data.usuario);
+  });
 
-  })
+  $("#editar_usuario").iziModal();
+  $("#editar_pass").iziModal();
+});
 
 function ver_usuario(id_usuario){
   $.ajax({
@@ -132,32 +191,6 @@ function guardar(){
         title: 'Datos guardados correctamente',
         showConfirmButton: false,
         timer: 1500
-      });
-    }
-  });
-}
-
-function cargar_usuarios(){
-  $.ajax({
-    url: "AJAX/usuariosAjax.php",
-    method: "POST",
-    async: true,
-    data: {"ver_usuarios" : ""},
-    dataType: "html",
-    success: function(respuesta) {
-      $("#caja_usuarios").html(respuesta);
-      $('#tabla_usuarios').DataTable({
-          "language": {
-          "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-          },
-          'order': [[0, 'desc']],
-          "columnDefs": [
-            {
-                "targets": [ 5 ],
-                "searchable": false,
-                "bSortable": false
-            }
-          ]
       });
     }
   });
