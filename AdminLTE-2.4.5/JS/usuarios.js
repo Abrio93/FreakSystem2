@@ -1,6 +1,10 @@
 $(document).ready(function() {
     var table = $('#tabla_usuarios').DataTable( {
+        "responsive": true,
         "processing": true,
+        "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        },
         "ajax": {
             "url": "AJAX/usuariosAjax.php",
             "type": "POST",
@@ -69,6 +73,8 @@ $(document).ready(function() {
       async: true,
       data: $("form[name=editar_usuario]").serialize(),
       success: function() {
+      var table = $('#tabla_usuarios').DataTable();
+      table.ajax.reload();
       $("#editar_usuario").iziModal('close');
         swal({
           position: '',
