@@ -81,7 +81,7 @@ $(document).ready(function() {
           type: 'success',
           title: 'Datos guardados correctamente',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       }
     });
