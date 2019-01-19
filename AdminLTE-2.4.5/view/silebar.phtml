@@ -40,7 +40,18 @@
           </a>
           <ul class="treeview-menu">
             <li class="<?= (isset($contenido) && $contenido == "Usuarios") ? "active" : ""; ?>"><a href="Usuarios"><i class="fa fa-circle"></i> Usuarios</a></li>
-            <li class="<?= (isset($contenido) && $contenido == "Grupos") ? "active" : ""; ?>"><a href="Grupos"><i class="fa fa-circle"></i> Grupos</a></li>
+          </ul>
+        </li>
+        <li class="treeview <?= (isset($silebar) && $silebar == "productos") ? "active menu-open" : ""; ?>">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Productos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?= (isset($contenido) && $contenido == "Categorias") ? "active" : ""; ?>"><a href="Categorias"><i class="fa fa-circle"></i> Categorias</a></li>
+            <li class="<?= (isset($contenido) && $contenido == "Productos") ? "active" : ""; ?>"><a href="Productos"><i class="fa fa-circle"></i> Productos</a></li>
           </ul>
         </li>
       </ul>

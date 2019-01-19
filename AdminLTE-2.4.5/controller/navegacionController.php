@@ -1,6 +1,6 @@
 <?php
 
-    $contenidos = array("Default", "404", "Perfil", "Usuarios", "Grupos");
+    $contenidos = array("Default", "404", "Perfil", "Usuarios", "Grupos", "Categorias", "Productos");
 
     if(isset($_GET['contenido'])){
         if(in_array($_GET['contenido'], $contenidos)){
